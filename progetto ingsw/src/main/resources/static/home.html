@@ -4,213 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes4Unical</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
 
-        header {
-            background-color: #a05a59;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
+    <script language="javascript" src="topbarScript.js"></script>
+    <script>
+        fetch('topbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('topbar').innerHTML = data;
 
-        header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
+                initTopBar();
 
-        .profile {
-            display: flex;
-            align-items: center;
-            position: relative;
-            cursor: pointer;
-        }
+            })
+            .catch(error => console.error('Errore nel caricamento della topbar:', error));
+    </script>
 
-        .profile-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: white;
-            color: #a05a59;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .profile-menu {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 10px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            z-index: 1000;
-        }
-
-        .profile-menu ul {
-            list-style: none;
-            margin: 0;
-            padding: 10px 0;
-        }
-
-        .profile-menu ul li {
-            padding: 10px 20px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .profile-menu ul li:last-child {
-            border-bottom: none;
-        }
-
-        .profile-menu ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 0.9rem;
-        }
-
-        .container {
-            display: flex;
-        }
-
-        .sidebar {
-            width: 200px;
-            background-color: #ffffff;
-            border-right: 1px solid #ddd;
-            padding: 20px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        .main-content {
-            flex-grow: 1;
-            padding: 20px;
-        }
-
-        .search-bar {
-            display: flex;
-            margin-bottom: 20px;
-        }
-
-        .search-bar input[type="text"] {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
-
-        .search-bar button {
-            padding: 10px 20px;
-            background-color: #a05a59;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .documents {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .document {
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        .document h3 {
-            margin: 10px 0;
-            font-size: 1rem;
-        }
-
-        .document p {
-            margin: 5px 0;
-            color: #555;
-        }
-
-        .document .rating {
-            margin-top: 10px;
-        }
-
-        .upload-button {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .upload-button button {
-            padding: 10px 20px;
-            background-color: #a05a59;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .upload-banner {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            z-index: 1000;
-        }
-
-        .upload-banner.active {
-            display: block;
-        }
-
-        .upload-banner input {
-            margin-bottom: 10px;
-        }
-    </style>
+   <link rel="stylesheet" href="stile.css">
 </head>
 <body>
-<header>
-    <h1>NOTES4UNICAL</h1>
-    <div class="profile" id="profile">
-        <div class="profile-circle">👤</div>
-        <div class="profile-menu" id="profileMenu">
-            <ul>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="#">Impostazioni</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-
-</header>
+<div id="topbar"></div>
 <div class="container">
     <aside class="sidebar">
         <ul>
@@ -263,20 +74,5 @@
     </form>
 </div>
 
-<script>
-    const profile = document.getElementById('profile');
-    const profileMenu = document.getElementById('profileMenu');
-
-    profile.addEventListener('click', () => {
-        profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!profile.contains(event.target)) {
-            profileMenu.style.display = 'none';
-        }
-    });
-
-</script>
 </body>
 </html>
